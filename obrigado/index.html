@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Compra confirmada · Caixa em Dia</title>
+<link rel="icon" href="../assets/logo.png">
+<link rel="preload" href="../assets/fonts/changa-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* confirmação */
+  .ok{background:var(--oliva);color:var(--papel);padding:22px 0 26px}
+  .ok .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .ok .marca{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px}
+  .ok .marca img{width:34px;height:34px;background:var(--papel);border-radius:9px;padding:3px}
+  .ok .selo{background:var(--amarelo);color:var(--tinta);font-weight:800;font-size:12px;letter-spacing:1px;padding:6px 10px;border-radius:8px;text-transform:uppercase}
+  .ok h1{font-size:34px;line-height:1.05}
+  .ok p{color:#D8DCC4;font-size:15.5px;margin-top:8px}
+
+  /* oferta */
+  .aviso{background:var(--amarelo);text-align:center;font-weight:800;font-size:13.5px;padding:10px 16px;letter-spacing:.2px}
+  .oferta{padding:28px 0 8px}
+  .oferta h2{font-size:31px;line-height:1.08;color:var(--oliva);margin:8px 0 12px}
+  .oferta .lead{font-size:16.5px}
+  .ilustra{display:block;width:100%;max-width:420px;margin:14px auto 4px;height:auto}
+  .lista{list-style:none;margin:6px 0 20px}
+  .lista li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--linha);font-size:15.5px}
+  .lista li:last-child{border-bottom:1px solid var(--linha)}
+  .lista i{flex:none;font-style:normal;width:26px;height:26px;border-radius:8px;background:var(--amarelo);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+
+  .preco{background:#fff;border-radius:18px;padding:20px 20px 18px;box-shadow:0 10px 30px rgba(30,33,28,.10);border:2px solid var(--amarelo)}
+  .preco .lin{display:flex;justify-content:space-between;font-size:15px;color:var(--cinza)}
+  .preco .lin s{color:var(--cinza)}
+  .preco .agora{display:flex;justify-content:space-between;align-items:flex-end;margin-top:8px}
+  .preco .agora span{font-weight:800;font-size:15px;max-width:55%;line-height:1.3}
+  .preco .agora .valor{max-width:none;white-space:nowrap;font-family:'Changa One',Inter,sans-serif;font-size:46px;line-height:1;color:var(--oliva)}
+  .preco .eco{margin-top:10px;font-size:13.5px;font-weight:700;color:var(--oliva);background:#EEF1E3;border-radius:8px;padding:8px 10px}
+  .preco .nota{margin-top:10px;font-size:13px;color:var(--cinza)}
+
+  /* botões da Kiwify */
+  .botoes{margin:18px 0 6px;text-align:center}
+  .botoes [id^="kiwify-upsell-trigger"]{display:block;width:100%;border:0;border-radius:14px;padding:18px 16px;font:800 17px/1.25 Inter,system-ui,sans-serif;cursor:pointer;background:var(--kiwify-upsell-accept-bg,#FFC83D);color:var(--kiwify-upsell-accept-color,#1E211C);box-shadow:0 6px 0 #c99a12}
+  .botoes [id^="kiwify-upsell-trigger"]:active{transform:translateY(3px);box-shadow:0 3px 0 #c99a12}
+  /* A recusa da Kiwify fica escondida: o "não" final, depois do mensal, aciona ela. */
+  .botoes [id^="kiwify-upsell-cancel-trigger"]{display:none!important}
+  .para-mensal{display:inline-block;margin-top:16px;font-size:14.5px;font-weight:600;color:var(--oliva)}
+  .seguro{font-size:12.5px;color:var(--cinza);text-align:center;margin-top:10px}
+  .limite{font-size:12.5px;color:var(--cinza);margin:22px 0 0;padding-top:14px;border-top:1px solid var(--linha)}
+
+  /* downsell: diagnóstico mensal */
+  .mensal{background:var(--oliva);color:var(--papel);margin-top:30px;padding:28px 0 30px;scroll-margin-top:12px}
+  .mensal .kick{color:var(--amarelo)}
+  .mensal h2{font-size:28px;line-height:1.08;margin:8px 0 10px}
+  .mensal p{color:#E4E2D8;font-size:15.5px}
+  .mensal .linha-preco{display:flex;align-items:baseline;gap:8px;margin:16px 0}
+  .mensal .linha-preco b{font-family:'Changa One',Inter,sans-serif;font-weight:400;font-size:42px;line-height:1;color:var(--papel)}
+  .mensal .linha-preco span{font-size:15px;color:#C9CDB4}
+  .mensal .pontos{list-style:none;margin:0 0 18px}
+  .mensal .pontos li{padding:6px 0 6px 24px;position:relative;font-size:15px;color:#E4E2D8}
+  .mensal .pontos li::before{content:"✓";position:absolute;left:0;color:var(--amarelo);font-weight:800}
+  .mensal .miudo{color:#C9CDB4;margin-top:10px;text-align:center}
+  .recusar{display:block;margin:22px auto 0;background:none;border:0;font:600 14px Inter,system-ui,sans-serif;color:#C9CDB4;text-decoration:underline;cursor:pointer;padding:8px}
+  .recusa-aviso{margin-top:8px;font-size:13px;color:#C9CDB4;text-align:center}
+
+  /* próximos passos */
+  .passos{background:#fff;padding:26px 0 30px}
+  .passos h3{font-size:24px;color:var(--oliva);margin-bottom:10px}
+  .passo{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--linha);font-size:15px}
+  .passo b.n{flex:none;font-family:'Changa One',Inter,sans-serif;font-weight:400;font-size:24px;color:var(--oliva);width:22px;line-height:1.1}
+  .passos .zap{margin-top:16px}
+  @media (min-width:700px){.ok h1{font-size:40px}.oferta h2{font-size:36px}}
+</style>
+</head>
+<body>
+
+<header class="ok">
+  <div class="wrap">
+    <div class="top">
+      <div class="marca"><img src="../assets/logo.png" alt="" width="34" height="34">Caixa em Dia</div>
+      <span class="selo">Compra confirmada</span>
+    </div>
+    <h1 class="ch">Pronto! Sua planilha está a caminho.</h1>
+    <p>O acesso chega no seu e-mail em alguns minutos. Antes de abrir, veja este convite: ele só aparece nesta página.</p>
+  </div>
+</header>
+
+<div class="aviso">Condição válida só agora, junto com a compra da planilha</div>
+
+<main class="wrap">
+  <section class="oferta">
+    <div class="kick">Um segundo olhar sobre os seus números</div>
+    <h2 class="ch">Quer que eu acompanhe o seu caixa nos próximos 3 meses?</h2>
+    <p class="lead">Você lança e acompanha a Saúde do Negócio no dia a dia. No fechamento de cada mês, eu leio os 7 indicadores juntos e te digo por onde começar.</p>
+
+    <img class="ilustra" src="../assets/relatorio-trimestral.png" width="600" height="720" alt="Exemplo de relatório mensal: nota de 0 a 100, as 3 prioridades do mês e um áudio curto, em três meses seguidos">
+
+    <ul class="lista">
+      <li><i>1</i><div><b>Relatório de 1 página</b> com os 7 indicadores lidos juntos, todo mês.</div></li>
+      <li><i>2</i><div><b>As 3 prioridades do mês</b>, em ordem, e um áudio curto explicando.</div></li>
+      <li><i>3</i><div><b>O que mudou</b> desde o mês anterior, para ver se as ações deram resultado.</div></li>
+    </ul>
+
+    <div class="preco">
+      <div class="lin"><span>Mês a mês (3 × R$ 49)</span><s>R$ 147</s></div>
+      <div class="agora"><span>Só nesta página, junto com a planilha</span><span class="valor">R$ 127</span></div>
+      <div class="eco">Você economiza R$ 20 e paga uma vez só pelos 3 meses.</div>
+      <div class="nota">Depois desta página, o acompanhamento volta para R$ 49 por mês.</div>
+    </div>
+
+    <div class="botoes">
+      <div id="kiwify-upsell-XdBbydD" data-upsell-url="" data-downsell-url="" style="--kiwify-upsell-accept-bg:#F2C511;--kiwify-upsell-accept-color:#000000">
+          <button id="kiwify-upsell-trigger-XdBbydD">Sim, quero os 3 meses de diagnóstico</button>
+          <div id="kiwify-upsell-cancel-trigger-XdBbydD">Não, obrigado. Quero só a planilha.</div>
+        </div><script src="../assets/depois-do-sim.js"></script><script src="https://snippets.kiwify.com/upsell-v2/upsell.min.js"></script>
+      <a class="para-mensal" href="#mensal">Prefiro pagar mês a mês ↓</a>
+    </div>
+    <p class="seguro">Pagamento processado pela Kiwify. Se você pagou com cartão, basta confirmar.</p>
+
+    <p class="limite">A primeira leitura é feita no fechamento do seu primeiro mês de lançamentos. Se você incluiu a Primeira Leitura no pagamento, ela cobre esse mês e o diagnóstico começa no mês seguinte. Não é contabilidade nem consultoria de investimento: é leitura de gestão, para você decidir com o número na mão.</p>
+  </section>
+</main>
+
+<section class="mensal" id="mensal">
+  <div class="wrap">
+    <div class="kick">Prefere ir mês a mês?</div>
+    <h2 class="ch">Diagnóstico mensal, sem compromisso de 3 meses.</h2>
+    <p>O mesmo relatório de 1 página e as mesmas 3 prioridades, todo mês. Você fica enquanto fizer sentido.</p>
+    <div class="linha-preco"><b>R$ 49</b><span>por mês · cancela quando quiser</span></div>
+    <ul class="pontos">
+      <li>Leitura dos 7 indicadores no fechamento de cada mês</li>
+      <li>As 3 prioridades, em ordem, com um áudio curto</li>
+      <li>O que mudou desde o mês anterior</li>
+    </ul>
+    <a class="botao-oliva" data-checkout href="https://pay.kiwify.com.br/B9EFodD">Quero o diagnóstico mensal</a>
+    <p class="miudo">Abre a página de pagamento da Kiwify. É uma assinatura: os dados de pagamento são pedidos de novo.</p>
+    <button class="recusar" type="button" data-recusar>Não, obrigado. Quero só a planilha.</button>
+    <p class="recusa-aviso" id="recusa-aviso" hidden>Tudo certo: o acesso à planilha já está no seu e-mail. Pode fechar esta página.</p>
+  </div>
+</section>
+
+<section class="passos">
+  <div class="wrap">
+    <h3 class="ch">Enquanto isso, seus próximos passos</h3>
+    <div class="passo"><b class="n">1</b><div>Abra o e-mail da Kiwify e entre na área de membros. Se não achar, olhe a pasta de spam ou promoções.</div></div>
+    <div class="passo"><b class="n">2</b><div>Na aula 1, toque em <b>Pegar minha planilha</b> e confirme a cópia. Ela fica no seu Google Drive e só você vê.</div></div>
+    <div class="passo"><b class="n">3</b><div>Siga o vídeo: em 7 etapas a planilha fica pronta para o primeiro lançamento.</div></div>
+    <a class="zap" href="https://wa.me/5511930045997?text=Oi%2C%20Gustavo!%20Acabei%20de%20comprar%20o%20Caixa%20em%20Dia." target="_blank" rel="noopener noreferrer">Travou em algo? Fale comigo no WhatsApp</a>
+  </div>
+</section>
+
+<footer>Caixa em Dia · Gustavo Oliveira Soluções</footer>
+<script src="../assets/funil.js" defer></script>
+</body>
+</html>

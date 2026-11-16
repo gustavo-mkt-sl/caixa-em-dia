@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caixa em Dia: fluxo de caixa no celular em 2 minutos por dia</title>
+<meta name="description" content="Planilha de fluxo de caixa feita para o celular. Lance o total do dia em 2 minutos e veja na Saúde do Negócio como estão sobra, custos e fôlego do caixa. R$ 47, pagamento único.">
+<meta name="theme-color" content="#3E4B22">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Caixa em Dia: seu caixa fechado em 2 minutos por dia">
+<meta property="og:description" content="Planilha de fluxo de caixa no celular, com a Saúde do Negócio. R$ 47, pagamento único, sem mensalidade.">
+<meta property="og:image" content="assets/previa-link-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo.png">
+<link rel="preload" href="assets/fonts/changa-one.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/base.css">
+<style>
+  .topo{background:var(--oliva);color:var(--papel)}
+  .barra-marca{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .marca{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:var(--papel);text-decoration:none}
+  .marca img{width:34px;height:34px;background:var(--papel);border-radius:9px;padding:3px}
+  .por{font-size:12px;color:#C9CDB4}
+
+  .heroi{padding:18px 0 40px}
+  .heroi .kick{color:var(--amarelo)}
+  .heroi h1{font-size:40px;line-height:1.02;margin:10px 0 14px}
+  .heroi h1 em{font-style:normal;color:var(--amarelo)}
+  .heroi .lead{font-size:17px;color:#E4E2D8}
+  .preco-linha{display:flex;align-items:baseline;gap:10px;margin:20px 0 14px;flex-wrap:wrap}
+  .preco-linha .valor{font-family:'Changa One',Inter,sans-serif;font-size:44px;line-height:1;color:var(--papel)}
+  .preco-linha span{font-size:14.5px;color:#C9CDB4}
+  .garantias{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin-top:16px;font-size:13px;color:#C9CDB4}
+  .garantias span::before{content:"✓ ";color:var(--amarelo);font-weight:800}
+  .heroi .tela{width:72%;max-width:300px;margin:30px auto 0;filter:drop-shadow(0 18px 30px rgba(0,0,0,.35))}
+
+  section{padding:44px 0}
+  .branca{background:var(--branco)}
+  .oliva{background:var(--oliva);color:var(--papel)}
+  .amarela{background:var(--amarelo)}
+  h2{font-family:'Changa One',Inter,sans-serif;font-weight:400;font-size:31px;line-height:1.06;color:var(--oliva);margin:8px 0 14px}
+  .oliva h2{color:var(--papel)}
+  .oliva .kick{color:var(--amarelo)}
+  p+p{margin-top:10px}
+  .texto{font-size:16.5px}
+  .oliva .texto{color:#E4E2D8}
+
+  .cartoes{display:grid;gap:12px;margin-top:20px}
+  .cartao{background:var(--papel);border-radius:16px;padding:18px}
+  .cartao b{display:block;font-family:'Changa One',Inter,sans-serif;font-weight:400;font-size:20px;color:var(--oliva);margin-bottom:4px}
+  .cartao p{font-size:15px;color:#3A3E35}
+
+  .passos{list-style:none;margin:18px 0 6px}
+  .passos li{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--linha);font-size:15.5px}
+  .passos li:last-child{border-bottom:1px solid var(--linha)}
+  .passos .n{flex:none;width:36px;height:36px;border-radius:10px;background:var(--amarelo);font-family:'Changa One',Inter,sans-serif;font-size:20px;display:flex;align-items:center;justify-content:center}
+  .passos b{display:block;font-size:16.5px}
+  .passos .tempo{font-size:12px;font-weight:800;letter-spacing:1px;color:#8a6a00;text-transform:uppercase}
+  .tela-meio{width:70%;max-width:290px;margin:26px auto;filter:drop-shadow(0 16px 26px rgba(30,33,28,.22))}
+
+  .indicadores{list-style:none;counter-reset:ind;margin:18px 0}
+  .indicadores li{counter-increment:ind;display:flex;gap:12px;padding:12px 0;border-top:1px solid rgba(243,241,232,.18);font-size:15px;color:#E4E2D8}
+  .indicadores li::before{content:counter(ind);flex:none;width:26px;height:26px;border-radius:8px;background:var(--amarelo);color:var(--tinta);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .indicadores b{color:var(--papel)}
+  .estados{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+  .estados span{font-size:13px;font-weight:800;padding:6px 10px;border-radius:8px}
+  .s-ok{background:#5E6E36;color:var(--papel)}
+  .s-at{background:var(--amarelo);color:var(--tinta)}
+  .s-cr{background:#B23A22;color:var(--papel)}
+  .oliva .tela-meio{filter:drop-shadow(0 18px 30px rgba(0,0,0,.35))}
+
+  .recebe{list-style:none;margin:16px 0 22px}
+  .recebe li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--linha);font-size:15.5px}
+  .recebe li::before{content:"✓";flex:none;width:26px;height:26px;border-radius:8px;background:var(--oliva);color:var(--amarelo);font-weight:800;display:flex;align-items:center;justify-content:center}
+  .caixa-preco{background:var(--papel);border:2px solid var(--amarelo);border-radius:18px;padding:22px 20px;text-align:center;box-shadow:0 10px 30px rgba(30,33,28,.10)}
+  .caixa-preco .valor{font-family:'Changa One',Inter,sans-serif;font-size:56px;line-height:1;color:var(--oliva)}
+  .caixa-preco .sub{font-size:15px;font-weight:700;margin:6px 0 18px}
+  .caixa-preco .miudo{margin-top:14px}
+
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  .tags span{background:var(--branco);border:1px solid var(--linha);border-radius:999px;padding:7px 13px;font-size:14px;font-weight:600}
+  .nao-e{background:var(--branco);border-radius:16px;padding:16px 18px;font-size:15px;margin-top:6px}
+
+  .alem{background:var(--papel);border-radius:16px;padding:18px;margin-top:16px;font-size:15px}
+  .alem b{color:var(--oliva)}
+
+  .faq{margin-top:16px}
+  .faq details{background:var(--branco);border:1px solid var(--linha);border-radius:14px;padding:2px 16px;margin-bottom:10px}
+  .faq summary{cursor:pointer;font-weight:700;font-size:16px;padding:13px 0;list-style-position:outside}
+  .faq details p{font-size:15px;color:#3A3E35;padding:0 0 14px}
+
+  .final{text-align:center}
+  .final h2{color:var(--tinta);font-size:38px}
+  .final .texto{margin-bottom:20px}
+  .final .comprar{background:var(--tinta);color:var(--papel);box-shadow:0 6px 0 #000}
+  .final .comprar:hover{background:#000;color:var(--papel)}
+  .final .miudo{color:var(--tinta);margin-top:14px}
+  .duvida{margin-top:22px;font-size:14px}
+  .duvida a{color:var(--tinta);font-weight:700}
+
+  .cta-bloco{margin-top:22px}
+  .cta-bloco .miudo{text-align:center;margin-top:12px}
+  .oliva .cta-bloco .miudo{color:#C9CDB4}
+
+  #barra-compra{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--tinta);color:var(--papel);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;transform:translateY(110%);transition:transform .2s ease;box-shadow:0 -8px 24px rgba(0,0,0,.25)}
+  #barra-compra.visivel{transform:none}
+  #barra-compra .rot{flex:1;font-size:13px;line-height:1.25}
+  #barra-compra .rot b{display:block;font-family:'Changa One',Inter,sans-serif;font-weight:400;font-size:20px;color:var(--amarelo)}
+  #barra-compra .comprar{width:auto;min-height:48px;padding:12px 18px;font-size:15.5px;box-shadow:none}
+  @media (min-width:760px){
+    .heroi h1{font-size:50px}
+    h2{font-size:36px}
+    .cartoes{grid-template-columns:repeat(3,1fr)}
+    #barra-compra{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <div class="barra-marca">
+      <span class="marca"><img src="assets/logo.png" alt="" width="34" height="34">Caixa em Dia</span>
+      <span class="por">por Gustavo Oliveira</span>
+    </div>
+    <div class="heroi">
+      <p class="kick">Planilha de fluxo de caixa para pequenos negócios</p>
+      <h1 class="ch">Seu caixa fechado em <em>2 minutos</em> por dia, no celular.</h1>
+      <p class="lead">No fim do dia você lança o total de dinheiro, Pix e cartão e as contas que pagou. A planilha faz as contas e mostra, na Saúde do Negócio, como o seu mês está indo.</p>
+      <div class="preco-linha"><span class="valor">R$ 47</span><span>pagamento único, sem mensalidade</span></div>
+      <a class="comprar" id="cta-topo" data-checkout href="https://pay.kiwify.com.br/5l1mRYp">COMPRAR AGORA</a>
+      <div class="garantias"><span>Acesso na hora, por e-mail</span><span>7 dias de garantia</span><span>Pix ou cartão</span></div>
+      <img class="tela" src="assets/tela-inicio.png" width="380" height="728" alt="Tela inicial do Caixa em Dia no celular, com o dinheiro em caixa do dia, a nota da Saúde do Negócio e o botão de lançar">
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="branca" id="problema">
+  <div class="wrap">
+    <p class="kick">O que acontece com toda planilha</p>
+    <h2>Você começa no dia 1 e larga no dia 10.</h2>
+    <p class="texto">A maioria das planilhas pede cada venda, cada cupom, cada troco. Os dados acumulam, o fim do dia já é corrido e ninguém coloca em dia.</p>
+    <p class="texto">O Caixa em Dia foi feito para caber no seu tempo. Você lança o total do dia e volta a cuidar do que importa: vender.</p>
+    <div class="cartoes">
+      <div class="cartao"><b>Total do dia</b><p>Três linhas de venda (dinheiro, Pix e cartão) e uma para cada conta paga. Nada de venda por venda.</p></div>
+      <div class="cartao"><b>Feito para o celular</b><p>Abre no app Planilhas, com botões grandes. Dá para lançar com o caixa fechando.</p></div>
+      <div class="cartao"><b>Atrasou? Segue</b><p>Lance o total da semana e continue. Número aproximado em dia vale mais que número perfeito parado.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <p class="kick">Como funciona</p>
+    <h2>Três passos. O mais longo leva 5 minutos.</h2>
+    <ol class="passos">
+      <li><span class="n">1</span><div><span class="tempo">Uma vez · 3 min</span><b>Configure</b>Nome do negócio, segmento, meta de vendas e quanto tem em caixa hoje.</div></li>
+      <li><span class="n">2</span><div><span class="tempo">Todo dia · 2 min</span><b>Lance o dia</b>Data, categoria e valor. A categoria já diz se o dinheiro entrou ou saiu.</div></li>
+      <li><span class="n">3</span><div><span class="tempo">Uma vez por semana · 5 min</span><b>Olhe a Saúde do Negócio</b>A planilha faz as contas e mostra onde está saudável e onde pede atenção.</div></li>
+    </ol>
+    <img class="tela-meio" src="assets/tela-lancar.png" width="420" height="965" loading="lazy" alt="Tela de lançamento com quatro linhas do dia: venda em dinheiro, no Pix, no cartão e compra de mercadoria">
+    <div class="cta-bloco">
+      <a class="comprar" data-checkout href="https://pay.kiwify.com.br/5l1mRYp">COMPRAR AGORA</a>
+      <p class="miudo">R$ 47 · pagamento único · a planilha fica sua</p>
+    </div>
+  </div>
+</section>
+
+<section class="oliva" id="saude">
+  <div class="wrap">
+    <p class="kick">O principal da planilha</p>
+    <h2>A Saúde do Negócio responde 7 perguntas sobre o seu mês.</h2>
+    <p class="texto">Cada indicador aparece em uma de três situações, comparado com uma faixa de referência do seu segmento:</p>
+    <div class="estados"><span class="s-ok">Saudável: siga</span><span class="s-at">Atenção: olhe de perto</span><span class="s-cr">Crítico: prioridade do mês</span></div>
+    <ol class="indicadores">
+      <li><div><b>Sobra do mês:</b> de cada R$ 100 vendidos, quanto sobra?</div></li>
+      <li><div><b>Custo direto:</b> quanto vai para mercadoria, insumos e taxas?</div></li>
+      <li><div><b>Despesas fixas:</b> aluguel, contas e equipe cabem nas vendas?</div></li>
+      <li><div><b>Fôlego de caixa:</b> por quantos dias o dinheiro em caixa paga as contas?</div></li>
+      <li><div><b>Ritmo da meta:</b> as vendas de hoje acompanham a meta do mês?</div></li>
+      <li><div><b>Retirada do dono:</b> você está tirando até o que o negócio gerou?</div></li>
+      <li><div><b>Constância:</b> em quantos dias você lançou? A partir de 80%, dá para confiar nos números.</div></li>
+    </ol>
+    <p class="texto">E mais: <b>quanto você precisa vender para pagar as contas</b>, por mês e por dia aberto. Passou desse ponto, o resto é sobra.</p>
+    <img class="tela-meio" src="assets/tela-saude.png" width="420" height="965" loading="lazy" alt="Tela Saúde do Negócio de uma confeitaria fictícia: nota 78 de 100, sobra do mês saudável, custo direto e fôlego de caixa em atenção">
+    <div class="cta-bloco">
+      <a class="comprar" data-checkout href="https://pay.kiwify.com.br/5l1mRYp">COMPRAR AGORA</a>
+      <p class="miudo">Exemplo com uma confeitaria fictícia. Os números da sua planilha são só seus.</p>
+    </div>
+  </div>
+</section>
+
+<section class="branca" id="oferta">
+  <div class="wrap">
+    <p class="kick">O que você recebe</p>
+    <h2>Tudo para começar hoje.</h2>
+    <ul class="recebe">
+      <li><div><b>A planilha Caixa em Dia</b>, uma cópia sua no Google Planilhas. Só você vê os seus números.</div></li>
+      <li><div><b>Vídeo de configuração</b> em 7 etapas, feito para assistir no celular.</div></li>
+      <li><div><b>Guia de hábito em PDF</b>: as seis regras para não largar a planilha.</div></li>
+      <li><div><b>Os 7 indicadores em PDF</b>, para consultar quando quiser.</div></li>
+      <li><div><b>Suporte pelo WhatsApp</b> se travar em alguma etapa da configuração.</div></li>
+    </ul>
+    <div class="caixa-preco">
+      <div class="valor">R$ 47</div>
+      <p class="sub">Pagamento único. Sem mensalidade. A planilha é sua.</p>
+      <a class="comprar" data-checkout href="https://pay.kiwify.com.br/5l1mRYp">COMPRAR AGORA</a>
+      <p class="miudo">Garantia de 7 dias: se não servir para o seu negócio, você pede o reembolso pela Kiwify.</p>
+    </div>
+  </div>
+</section>
+
+<section id="para-quem">
+  <div class="wrap">
+    <p class="kick">Para quem é</p>
+    <h2>Para quem toca o próprio negócio e quer o número na mão.</h2>
+    <div class="tags"><span>Salão e estética</span><span>Confeitaria e lanchonete</span><span>Loja de bairro</span><span>Moda e acessórios</span><span>Oficina e assistência técnica</span><span>Pet shop</span><span>Ateliê e costura</span><span>Prestador de serviço</span></div>
+    <p class="nao-e"><b>Não substitui o contador.</b> Ele cuida dos impostos e das obrigações. O Caixa em Dia cuida do dia a dia: quanto entrou, quanto sobrou e por quantos dias o caixa aguenta.</p>
+    <div class="alem">
+      <b>Quer um segundo olhar nos números?</b> No pagamento você pode incluir a <b>Primeira Leitura</b>: no fechamento do seu primeiro mês, eu leio os 7 indicadores juntos e te mando as 3 prioridades, em 1 página e um áudio curto.
+    </div>
+  </div>
+</section>
+
+<section class="branca" id="duvidas">
+  <div class="wrap">
+    <p class="kick">Dúvidas</p>
+    <h2>Perguntas que aparecem antes da compra.</h2>
+    <div class="faq">
+      <details><summary>Não tenho tempo para preencher planilha.</summary><p>São três linhas de venda por dia e as contas que você pagou. Dá 2 minutos, no celular, junto com o fechamento do caixa.</p></details>
+      <details><summary>Já tentei planilha e larguei.</summary><p>Quase todo mundo larga porque tenta lançar venda por venda. Aqui é o total do dia. Se atrasar, você lança o total da semana e segue.</p></details>
+      <details><summary>O que eu preciso para usar?</summary><p>Uma conta Google (a mesma do Gmail) e o app Planilhas, gratuito para Android e iPhone. Também funciona no computador.</p></details>
+      <details><summary>Já anoto tudo no caderno.</summary><p>O caderno guarda. A planilha soma, compara com a faixa do seu segmento e mostra quando um número sai do esperado.</p></details>
+      <details><summary>Tem aplicativo grátis que faz isso.</summary><p>Tem, e a maioria pede o cadastro de cada venda. Aqui são três campos e o arquivo é seu, sem mensalidade.</p></details>
+      <details><summary>Como recebo depois de pagar?</summary><p>O acesso chega no seu e-mail logo depois da confirmação do pagamento. Na área de membros, um toque faz a sua cópia da planilha e o vídeo mostra a configuração.</p></details>
+      <details><summary>Alguém vê os números do meu negócio?</summary><p>Não. A planilha fica no seu Google Drive. Eu só vejo se você compartilhar comigo para uma leitura.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Pede o reembolso pela Kiwify e recebe o valor de volta.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="amarela final" id="comprar">
+  <div class="wrap">
+    <h2>Bora colocar o caixa em dia?</h2>
+    <p class="texto">R$ 47, pagamento único. Hoje à noite você já fecha o primeiro dia.</p>
+    <a class="comprar" id="cta-final" data-checkout href="https://pay.kiwify.com.br/5l1mRYp">COMPRAR AGORA</a>
+    <p class="miudo">Pagamento seguro pela Kiwify · 7 dias de garantia</p>
+    <p class="duvida">Ficou alguma dúvida? <a href="https://wa.me/5511930045997?text=Oi%2C%20Gustavo!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20Caixa%20em%20Dia." target="_blank" rel="noopener noreferrer">Fale comigo no WhatsApp</a></p>
+  </div>
+</section>
+</main>
+
+<footer>Caixa em Dia · Gustavo Oliveira Soluções · Esta página não usa cookies nem coleta dados.</footer>
+
+<div id="barra-compra" aria-hidden="true">
+  <div class="rot"><b>R$ 47</b>pagamento único</div>
+  <a class="comprar" data-checkout href="https://pay.kiwify.com.br/5l1mRYp" tabindex="-1">COMPRAR AGORA</a>
+</div>
+
+<script src="assets/funil.js" defer></script>
+</body>
+</html>
